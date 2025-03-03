@@ -197,9 +197,9 @@ void AppManager::SaveShortcut(wxCommandEvent& ev)
 
 	if (list->GetStringSelection() != "<Add new>") {
 		int id = list->GetSelection() - 1;
-		shortcuts.shortcuts[id].title = titleInp->GetValue();
-		shortcuts.shortcuts[id].command = cmdInp->GetValue();
-		shortcuts.shortcuts[id].wd = wdInp->GetValue();
+		shortcuts.shortcuts[id].title = std::string((titleInp->GetValue()).mb_str(wxConvUTF8));
+		shortcuts.shortcuts[id].command = std::string((cmdInp->GetValue()).mb_str(wxConvUTF8));
+		shortcuts.shortcuts[id].wd = std::string((wdInp->GetValue()).mb_str(wxConvUTF8));
 
 		if (WriteShortcuts()) {
 			ClearInputs();
@@ -211,9 +211,9 @@ void AppManager::SaveShortcut(wxCommandEvent& ev)
 	}
 	else {
 		Shortcut temp;
-		temp.title = titleInp->GetValue();
-		temp.command = cmdInp->GetValue();
-		temp.wd = wdInp->GetValue();
+		temp.title = std::string((titleInp->GetValue()).mb_str(wxConvUTF8));
+		temp.command = std::string((cmdInp->GetValue()).mb_str(wxConvUTF8));
+		temp.wd = std::string((wdInp->GetValue()).mb_str(wxConvUTF8));
 		shortcuts.shortcuts.push_back(temp);
 
 		if (WriteShortcuts()) {

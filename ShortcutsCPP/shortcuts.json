@@ -1,24 +1,14 @@
 {
     "shortcuts": [
         {
-            "command": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --profile-directory=\"Default\"",
-            "title": "Edge",
-            "wd": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application"
-        },
-        {
-            "command": "pythonw C:/Users/A_K_G/PycharmProjects/NoteBook/main.py",
-            "title": "Notebook",
-            "wd": "C:/Users/A_K_G/PycharmProjects/NoteBook"
-        },
-        {
-            "command": "python C:/Users/A_K_G/PycharmProjects/advanced_calculator/sqrCTk.py",
-            "title": "Sqr equations",
-            "wd": "C:/Users/A_K_G/PycharmProjects/advanced_calculator"
-        },
-        {
             "command": "python C:/Users/A_K_G/PycharmProjects/tests/ColorChooserCTk.py",
             "title": "Color chooser",
             "wd": "C:/Users/A_K_G/PycharmProjects/tests"
+        },
+        {
+            "command": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --profile-directory=\"Default\"",
+            "title": "Edge (Main)",
+            "wd": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application"
         },
         {
             "command": "C:\\Users\\A_K_G\\AppData\\Local\\Programs\\Python\\Python311\\pythonw.exe C:\\Users\\A_K_G\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\idlelib\\idle.pyw",
@@ -26,19 +16,14 @@
             "wd": "C:\\Users\\A_K_G\\AppData\\Local\\Programs\\Python\\Python311\\"
         },
         {
-            "command": "C:\\Users\\A_K_G\\VSProjects\\serverRunnerGUI\\venv\\Scripts\\pythonw.exe C:\\Users\\A_K_G\\VSProjects\\serverRunnerGUI\\main.py",
-            "title": "Server Runner",
-            "wd": "C:\\Users\\A_K_G\\VSProjects\\serverRunnerGUI"
+            "command": "pythonw C:/Users/A_K_G/PycharmProjects/NoteBook/main.py",
+            "title": "Notebook",
+            "wd": "C:/Users/A_K_G/PycharmProjects/NoteBook"
         },
         {
-            "command": "C:\\Users\\A_K_G\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe",
-            "title": "VSCode",
-            "wd": "C:\\Users\\A_K_G\\AppData\\Local\\Programs\\Microsoft VS Code"
-        },
-        {
-            "command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe",
-            "title": "Visual Studio",
-            "wd": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\"
+            "command": "\"C:\\Users\\A_K_G\\source\\repos\\Calculator\\x64\\Debug\\Cąłcułątór.exe\"",
+            "title": "calc",
+            "wd": ""
         }
     ]
 }

@@ -32,6 +32,7 @@ public:
 	void KLeft();
 	void KRight();
 
+	std::wstring ToUTF16(std::string& str);
 	void ExecuteCommand(HWND previousForegroundWindow);
 
 	wxWindow* window;

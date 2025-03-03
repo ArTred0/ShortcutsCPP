@@ -157,12 +157,14 @@
   <ItemGroup>
     <ClInclude Include="App.h" />
     <ClInclude Include="AppManager.h" />
+    <ClInclude Include="BGWin.h" />
     <ClInclude Include="MainFrame.h" />
     <ClInclude Include="OptionGrid.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="AppManager.cpp" />
+    <ClCompile Include="BGWin.cpp" />
     <ClCompile Include="HotkeyMonitoring.cpp" />
     <ClCompile Include="MainFrame.cpp" />
     <ClCompile Include="OptionGrid.cpp" />

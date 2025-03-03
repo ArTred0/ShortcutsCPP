@@ -69,9 +69,10 @@
 //
 //};
 
-MainFrame::MainFrame(const wxString& title) :
+MainFrame::MainFrame(const wxString& title, BGWin* bgwin) :
 	wxFrame(nullptr, wxID_ANY, title, wxDefaultPosition, wxDefaultSize, wxFRAME_NO_TASKBAR | wxFRAME_SHAPED | wxSTAY_ON_TOP)
 {
+	this->bgwin = bgwin;
 	this->Bind(wxEVT_CLOSE_WINDOW, &MainFrame::OnClose, this);
 	this->Bind(wxEVT_KEY_DOWN, &MainFrame::OnKeyDown, this);
 	this->Bind(wxEVT_ACTIVATE, &MainFrame::OnActivate, this);
@@ -144,9 +145,19 @@ void MainFrame::CreateControls()
 			}
 			//opt->widget->Bind(wxEVT_ENTER_WINDOW, &Option::OnEnter, this);
 		}
-		increment += 3;
+		increment += colsNum;
 	}
-	grid->SelectOption(0, 0);
+	switch (colsNum) {
+	case 1:
+	case 2:
+		grid->SelectOption(0, 0);
+		break;
+	case 3:
+	case 4:
+		grid->SelectOption(1, 1);
+		break;
+	}
+	//grid->SelectOption(0, 0);
 
 	border->Add(outerSizer, wxSizerFlags().Border(wxALL, 25));
 	panel->SetSizer(border);
@@ -157,25 +168,27 @@ void MainFrame::CreateControls()
 
 }
 
+//void MainFrame::BindOnKeyDownAndEndingProcess(BGWin* win)
+//{
+//	
+//	this->panel->Bind(wxEVT_KEY_DOWN, &MainFrame::OnKeyDown, this);
+//}
+
 void MainFrame::OnKeyDown(wxKeyEvent& ev) {
 	if (ev.GetKeyCode() == 'S') {
 		this->Close(true);
-		//this->Show(false);
-		//this->Destroy();
-		//delete this;
 		LaunchShortcutsManager();
-		//delete this;
 		return;
 	}
 	switch (ev.GetKeyCode()) {
 
+	case WXK_PAUSE:
+		this->Close(true);
+		this->bgwin->Close(true);
+		break;
 	case WXK_ESCAPE:
 		SetForegroundWindow(previousForegroundWindow);
 		this->Close(true);
-		//this->Show(false);
-		//delete this;
-		//this->Destroy();
-		//delete this;/
 		break;
 	case WXK_UP:
 		grid->KUp();

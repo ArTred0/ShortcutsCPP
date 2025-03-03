@@ -6,15 +6,6 @@
 
 std::atomic<bool> running(true);
 
-class BGWin : public wxFrame
-{
-public:
-	BGWin()
-		: wxFrame(NULL, wxID_ANY, "")
-	{
-	}
-};
-
 class HotkeyWaiter : public wxApp
 {
 public:
@@ -61,8 +52,8 @@ private:
 			if (msg.message == WM_HOTKEY && msg.wParam == HOTKEY_ID)
 			{
 				
-				wxTheApp->CallAfter([]() {
-					MainFrame* app = new MainFrame("Shortcuts");
+				wxTheApp->CallAfter([this]() {
+					MainFrame* app = new MainFrame("Shortcuts", this->bgwin);
 					app->previousForegroundWindow = GetForegroundWindow();
 					app->Show(true);
 					app->Center();
@@ -75,6 +66,7 @@ private:
 					app->SetFocus();
 
 					AttachThreadInput(foregroundThreadId, currentThreadId, FALSE);
+					//app->Bind(wxEVT_KEY_DOWN, [this, app](wxKeyEvent& ev) { if (ev.GetKeyCode() == WXK_PAUSE) { app->Close(true); this->bgwin->Close(true); ev.Skip(true); } });
 					});
 			}
 			TranslateMessage(&msg);

@@ -2,6 +2,7 @@
 #include <wx/wx.h>
 #include "OptionGrid.h"
 #include "AppManager.h"
+#include "BGWin.h"
 
 //using json = nlohmann::json;
 //
@@ -24,16 +25,18 @@
 class MainFrame : public wxFrame
 {
 public:
-	MainFrame(const wxString& title);
+	MainFrame(const wxString& title, BGWin* bgwin);
 	HWND previousForegroundWindow = NULL;
 private:
 	ShortcutsList LoadShortcuts();
 	void CreateControls();
+	//void BindOnKeyDownAndEndingProcess(BGWin* win);
 	void OnKeyDown(wxKeyEvent& event);
 	void OnClose(wxCloseEvent& event);
 	void OnActivate(wxActivateEvent& event);
 	void LaunchShortcutsManager();
 
+	BGWin* bgwin;
 	wxPanel* panel;
 	OptGrid* grid;
 };
