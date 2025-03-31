@@ -42,7 +42,7 @@ private:
 	{
 		if (!RegisterHotKey(NULL, HOTKEY_ID, MOD_WIN | MOD_ALT, 'S'))
 		{
-			wxLogError("Не удалось зарегистрировать горячую клавишу");
+			wxLogError("Failed to register Win+Alt+S hotkey. Probably one of launched programs use it.");
 			return;
 		}
 
@@ -107,14 +107,3 @@ private:
 };
 
 wxIMPLEMENT_APP(HotkeyWaiter);
-//wxIMPLEMENT_APP_NO_MAIN(HotkeyWaiter);
-//int main() {
-//	wxDISABLE_DEBUG_SUPPORT();
-//	if (!wxInitialize()) {
-//		return -1;
-//	}
-//	HotkeyWaiter* app = new HotkeyWaiter();
-//	wxApp::SetInstance(app);
-//	wxEntry();
-//	return 0;
-//}

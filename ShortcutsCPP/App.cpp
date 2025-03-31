@@ -97,7 +97,7 @@ ShortcutsList MainFrame::LoadShortcuts()
 
 	}
 	catch (...) {
-		wxMessageBox("Error occured while reading \"shortcuts.json\" file");
+		wxMessageBox("Error occured while reading \"shortcuts.json\" file. Probably it doesn't exist or damaged.");
 		this->Destroy();
 		return ShortcutsList{};
 	}
@@ -110,8 +110,8 @@ void MainFrame::CreateControls()
 	panel->SetBackgroundColour(wxColour(10, 10, 10));
 	//panel->SetForegroundColour(wxColour(230, 230, 230));
 
-	wxFont fNorm(wxFontInfo(wxSize(0, 24)));
-	wxFont fSelect(wxFontInfo(wxSize(0, 24)).Bold().Underlined());
+	wxFont fNorm(wxFontInfo(wxSize(0, 28)));
+	wxFont fSelect(wxFontInfo(wxSize(0, 27)).Bold());
 
 	ShortcutsList shortcuts = LoadShortcuts();
 	std::size_t numOfShortcuts = shortcuts.shortcuts.size();
@@ -125,6 +125,9 @@ void MainFrame::CreateControls()
 	else if (numOfShortcuts <= 16) {
 		colsNum = 4;
 	}
+	else if (numOfShortcuts <= 25) {
+		colsNum = 5;
+	}
 	int rowsNum = ceil(static_cast<float>(numOfShortcuts) / colsNum);
 
 	wxBoxSizer* border = new wxBoxSizer(wxVERTICAL);
@@ -137,13 +140,13 @@ void MainFrame::CreateControls()
 		for (short c = 0; c < colsNum; c++) {
 			try {
 				Option* opt = new Option(panel, outerSizer, grid, (short)c, (short)r, shortcuts.shortcuts.at(c + increment).title, shortcuts.shortcuts.at(c + increment).command, shortcuts.shortcuts.at(c + increment).wd);
+				opt->BindExecuting(this->previousForegroundWindow);
 				grid->AddOption(opt);
 
 			}
 			catch (const std::out_of_range) {
 				break;
 			}
-			//opt->widget->Bind(wxEVT_ENTER_WINDOW, &Option::OnEnter, this);
 		}
 		increment += colsNum;
 	}

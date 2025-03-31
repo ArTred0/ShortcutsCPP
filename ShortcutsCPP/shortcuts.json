@@ -16,14 +16,34 @@
             "wd": "C:\\Users\\A_K_G\\AppData\\Local\\Programs\\Python\\Python311\\"
         },
         {
-            "command": "pythonw C:/Users/A_K_G/PycharmProjects/NoteBook/main.py",
+            "command": "pythonw C:\\Users\\A_K_G\\PycharmProjects\\NoteBook\\main.py",
             "title": "Notebook",
-            "wd": "C:/Users/A_K_G/PycharmProjects/NoteBook"
+            "wd": "C:\\Users\\A_K_G\\PycharmProjects\\NoteBook"
         },
         {
-            "command": "\"C:\\Users\\A_K_G\\source\\repos\\Calculator\\x64\\Debug\\Cąłcułątór.exe\"",
-            "title": "calc",
+            "command": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\devenv.exe",
+            "title": "Visual Studio",
+            "wd": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\"
+        },
+        {
+            "command": "C:\\Users\\A_K_G\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe",
+            "title": "VS Code",
+            "wd": "C:\\Users\\A_K_G\\AppData\\Local\\Programs\\Microsoft VS Code"
+        },
+        {
+            "command": "\"C:\\Users\\A_K_G\\Downloads\\DB.Browser.for.SQLite-v3.13.1-win64\\DB Browser for SQLite.exe\"",
+            "title": "DB Browser",
             "wd": ""
+        },
+        {
+            "command": "\"C:\\Program Files\\PostgreSQL\\16\\pgAdmin 4\\runtime\\pgAdmin4.exe\"",
+            "title": "pgAdmin 4",
+            "wd": "C:\\Program Files\\PostgreSQL\\16\\pgAdmin 4\\runtime"
+        },
+        {
+            "command": "\"C:\\Program Files\\UltiMaker Cura 5.9.0\\UltiMaker-Cura.exe\"",
+            "title": "Cura",
+            "wd": "C:\\Program Files\\UltiMaker Cura 5.9.0"
         }
     ]
 }

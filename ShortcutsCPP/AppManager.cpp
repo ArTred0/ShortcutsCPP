@@ -17,7 +17,8 @@ AppManager::AppManager(const wxString& title) :
 	list = new wxListBox(panel, wxID_ANY);
 	list->Bind(wxEVT_LISTBOX, &AppManager::OnClickOnList, this);
 	list->Bind(wxEVT_KEY_DOWN, &AppManager::OnKeyDown, this);
-	list->Insert("<Add new>", 0);
+	if ((int)shortcuts.shortcuts.size() < 25)
+		list->Insert("<Add new>", 0);
 
 	for (Shortcut s : shortcuts.shortcuts) {
 		list->Append(s.title);
@@ -34,6 +35,7 @@ AppManager::AppManager(const wxString& title) :
 	wxBoxSizer* titleRow = new wxBoxSizer(wxHORIZONTAL);
 	wxStaticText* lblT = new wxStaticText(panel, wxID_ANY, "Title:");
 	titleInp = new wxTextCtrl(panel, wxID_ANY);
+	titleInp->Bind(wxEVT_TEXT, &AppManager::OnTitleEnter, this);
 	titleRow->Add(lblT);
 	titleRow->AddSpacer(10);
 	titleRow->Add(titleInp, wxSizerFlags().Proportion(1));
@@ -116,7 +118,9 @@ void AppManager::OnClickOnList(wxCommandEvent& ev)
 void AppManager::UpdateList()
 {
 	list->Clear();
-	list->Append("<Add new>");
+	if ((int)shortcuts.shortcuts.size() < 25)
+		list->Append("<Add new>");
+
 	for (Shortcut s : shortcuts.shortcuts) {
 		list->Append(s.title);
 	}
@@ -139,17 +143,20 @@ void AppManager::OnKeyDown(wxKeyEvent& ev)
 
 void AppManager::SwapShortcuts(short offset)
 {
-	int targetInd = list->GetSelection() - 1;
+	if (list->GetStringSelection() == wxString("<Add new>")) return;
+
+	short shift = (list->GetString(0) == wxString("<Add new>")) ? -1 : 0;
+	int targetInd = list->GetSelection() + shift;
 	int newInd = targetInd + offset;
 
-	if (newInd >= 0 && newInd < list->GetCount() - 1) {
+	if (newInd >= 0 && newInd < list->GetCount() + shift) {
 
 		Shortcut targetEl = shortcuts.shortcuts[targetInd];
 		shortcuts.shortcuts[targetInd] = shortcuts.shortcuts[newInd];
 		shortcuts.shortcuts[newInd] = targetEl;
 
 		UpdateList();
-		list->Select(newInd + 1);
+		list->Select(newInd - shift);
 	}
 	else {
 		return;
@@ -229,7 +236,8 @@ void AppManager::SaveShortcut(wxCommandEvent& ev)
 
 void AppManager::DeleteShortcut(wxCommandEvent& ev)
 {
-	int id = list->GetSelection() - 1;
+	short shift = (list->GetStringSelection() == wxString("<Add new>")) ? -1 : 0;
+	int id = list->GetSelection() + shift;
 	std::string title = shortcuts.shortcuts[id].title;
 	shortcuts.shortcuts.erase(shortcuts.shortcuts.begin() + id);
 
@@ -239,6 +247,17 @@ void AppManager::DeleteShortcut(wxCommandEvent& ev)
 	}
 	else {
 		wxMessageBox("Failed to open \"shortcuts.json\"", "Error");
+	}
+}
+
+void AppManager::OnTitleEnter(wxCommandEvent& event)
+{
+	wxString value = titleInp->GetValue();
+
+	const size_t maxLength = 30;
+	if (value.Length() > maxLength) {
+		titleInp->ChangeValue(value.SubString(0, maxLength - 1));
+		titleInp->SetInsertionPointEnd();
 	}
 }
 

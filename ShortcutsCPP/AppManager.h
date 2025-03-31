@@ -33,6 +33,9 @@ public:
 	void SaveShortcut(wxCommandEvent& ev);
 	void DeleteShortcut(wxCommandEvent& ev);
 
+	void OnTitleEnter(wxCommandEvent& event);
+
+
 	ShortcutsList LoadShortcuts();
 
 	wxPanel* panel;
