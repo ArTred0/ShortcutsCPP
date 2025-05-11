@@ -42,7 +42,8 @@ private:
 	{
 		if (!RegisterHotKey(NULL, HOTKEY_ID, MOD_WIN | MOD_ALT, 'S'))
 		{
-			wxLogError("Failed to register Win+Alt+S hotkey. Probably one of launched programs use it.");
+			wxLogError("Failed to register Win+Alt+S hotkey. Probably you've just started 2 instances of this app or one of launched programs already uses it.");
+			delete bgwin;
 			return;
 		}
 

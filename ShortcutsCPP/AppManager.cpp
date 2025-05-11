@@ -236,7 +236,7 @@ void AppManager::SaveShortcut(wxCommandEvent& ev)
 
 void AppManager::DeleteShortcut(wxCommandEvent& ev)
 {
-	short shift = (list->GetStringSelection() == wxString("<Add new>")) ? -1 : 0;
+	short shift = (list->GetString(0) == wxString("<Add new>")) ? -1 : 0;
 	int id = list->GetSelection() + shift;
 	std::string title = shortcuts.shortcuts[id].title;
 	shortcuts.shortcuts.erase(shortcuts.shortcuts.begin() + id);
